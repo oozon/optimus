@@ -39,6 +39,8 @@ def create_material(
     speed_of_sound,
     attenuation_coeff_a=0,
     attenuation_pow_b=0,
+    heat_capacity=None,
+    thermal_conductivity=None,
     save_to_file=False,
     **properties_user
 ):
@@ -58,6 +60,12 @@ def create_material(
     attenuation_pow_b: float
         Attenuation power in power law, dimensionless
         Default: 0 (no attenuation)
+    heat_capacity: float
+        Heat capacity in [J/kg/°C]
+        Default: None
+    thermal_conductivity: float
+        Thermal Conductivity in [W/m/°C]
+        Default: None
     save_to_file: boolean
         Write the material to the user-defined database.
     **properties_user : dict
@@ -75,6 +83,8 @@ def create_material(
         "speed_of_sound",
         "attenuation_coeff_a",
         "attenuation_pow_b",
+        "heat_capacity",
+        "thermal_conductivity"
     ]
     args_val = [
         name,
@@ -82,6 +92,8 @@ def create_material(
         speed_of_sound,
         attenuation_coeff_a,
         attenuation_pow_b,
+        heat_capacity,
+        thermal_conductivity
     ]
     properties = dict((key, val) for key, val in zip(list_args, args_val))
 
@@ -90,12 +102,13 @@ def create_material(
 
     if not isinstance(properties["name"], str):
         raise TypeError("Name of material needs to be specified as a string.")
-    elif not all(isinstance(properties[key], (float, int)) for key in keys):
-        raise TypeError("Material properties must be float/integer.")
+    elif not all(isinstance(properties[key], (float, int, type(None))) for key in keys):
+        raise TypeError("Material properties must be float/integer/none.")
     else:
         properties["name"] = properties["name"].lower()
         for key in keys:
-            properties[key] = _np.float(properties[key])
+            if properties[key] is not None:
+                properties[key] = _np.float(properties[key])
         if save_to_file:
             _write_material_database(properties)
 

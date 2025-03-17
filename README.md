@@ -73,10 +73,13 @@ Gélat, P., Haqshenas, S. R., and van 't Wout, E. (2022), OptimUS: A Python libr
 author = {Gélat, Pierre and Haqshenas, Reza and van 't Wout, Elwin},
 title = {OptimUS},
 url = {https://github.com/optimuslib/optimus},
-version = {0.1.0}
+version = {0.2.1}
 }
 ```
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.15039756.svg)](https://doi.org/10.5281/zenodo.15039756)
+
+https://doi.org/10.5281/zenodo.15039756
 
 ## Acknowledgement
 - The OptimUS library uses the bempp-legacy library from the [BEMPP project](https://github.com/bempp) as the computational backend. 

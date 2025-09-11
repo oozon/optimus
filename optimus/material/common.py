@@ -86,12 +86,16 @@ def get_material_properties(name):
             ("Attenuation Constant", "a [Np/m/MHz]")
         ].get_values()[0]
         attenuation_pow_b = material[("Attenuation Constant", "b")].get_values()[0]
+        heat_capacity = material[("Heat Capacity (J/kg/°C)", "Average")].get_values()[0]
+        thermal_conductivity = material[("Thermal Conductivity (W/m/°C)", "Average")].get_values()[0]
         output = {
             "name": name,
             "density": density,
             "speed_of_sound": speed_of_sound,
             "attenuation_coeff_a": attenuation_coeff_a,
             "attenuation_pow_b": attenuation_pow_b,
+            "heat_capacity": heat_capacity,
+            "thermal_conductivity": thermal_conductivity,
         }
         return output
 
@@ -182,6 +186,10 @@ class Material:
                 Attenuation coefficient in power law [Np/m/MHz]
             attenuation_pow_b: float
                 Attenuation power in power law [dimensionless]
+            heat_capacity: float
+                Heat capacity in [J/kg/°C]
+            thermal_conductivity: float
+                Thermal Conductivity in [W/m/°C]
         """
 
         self.name = properties["name"]
@@ -189,6 +197,8 @@ class Material:
         self.speed_of_sound = properties["speed_of_sound"]
         self.attenuation_coeff_a = properties["attenuation_coeff_a"]
         self.attenuation_pow_b = properties["attenuation_pow_b"]
+        self.heat_capacity = properties["heat_capacity"]
+        self.thermal_conductivity = properties["thermal_conductivity"]
         self.properties = properties
 
     def compute_wavenumber(self, frequency):

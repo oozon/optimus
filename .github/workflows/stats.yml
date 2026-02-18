@@ -1,0 +1,14 @@
+name: Repo Stats
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch: # Allows manual runs
+jobs:
+  run-stats:
+    runs-on: ubuntu-latest
+    steps:
+      - name: run-ghrs
+        uses: jgehrcke/github-repo-stats@v1.4.1
+        with:
+          repository: optimuslib/optimus
+          ghtoken: ${{ secrets.GHRS_GITHUB_API_TOKEN }}

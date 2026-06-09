@@ -183,16 +183,15 @@ for i=3:3
     legend({'Ex-utero (scaled)','In-utero (scaled+filtered)'}, 'Location', 'best');
     fontsize(gcf, 23, 'points')
 % 
-%     % % 1. Load audio
-%     % 
-%     % % 2. Define the 20-second window
+
+%     % % Define the 20-second window
 %     % start_time = 0; % in seconds
 %     % end_time = 20;  % in seconds
 %     % indices = (start_time*Fs + 1) : (end_time*Fs);
 %     % y_20s_scaled = y_scaled(indices, :); % Extracts 20 seconds
 %     % y_20s_filtered = y_filtered(indices, :);
 %     % 
-%     % % 3. Calculate Leq
+%     % % Calculate Leq
 %     % % Assuming y is calibrated to Pascal
 %     % rms20s_scaled = rms(y_20s_scaled); 
 %     % rms20s_filtered = rms(y_20s_filtered);
